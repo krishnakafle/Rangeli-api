@@ -31,9 +31,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
 '127.0.0.1',
 'localhost',
-'srl.localmun.com',
-'localmun.com',
-'*'
+'rangeli.kaflekrishna.com.np',
+'rangeli-api.kaflekrishna.com.np',
+# '*'
 ]
 
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'dataAPI',
     'profiles',
     'mapLayersAPI',
+    'corsheaders',
 
     'rest_framework',
 ]
@@ -97,7 +98,7 @@ DATABASES = {
             'options': '-c search_path=public'
         },
         'USER': 'postgres',
-        'PASSWORD': 'krishna',
+        'PASSWORD': 'mapnepal@2020',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -152,3 +153,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8081",
+    "http://localhost:8082",
+    "http://rangeli.kaflekrishna.com.np",
+    "https://rangeli.kaflekrishna.com.np",
+]
