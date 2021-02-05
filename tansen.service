@@ -1,0 +1,13 @@
+[Unit]
+Description=Soil daemon
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/home/user1/administrator/tansen
+ExecStart=/home/user1/administrator/tansen/env/bin/gunicorn --workers 3 --bind localhost:9001 tansen.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+

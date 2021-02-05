@@ -1,0 +1,28 @@
+server {
+
+    server_name tansen.geonepal.com.np;
+    charset utf-8;
+    listen 80;
+
+    access_log /var/log/nginx/tansen_access.log;
+    error_log /var/log/nginx/tansen_error.log;
+
+    gzip on;
+    gzip_types application/json;
+
+    #location = /favicon.ico { access_log off; log_not_found off; }
+
+    location / {
+       #rewrite /bhimeshwor(.*) $1  break;
+       proxy_pass http://127.0.0.1:9001;
+    }
+
+    location /static {
+        alias /var/www/tansen;
+    }
+
+   
+}
+
+
+
