@@ -1,0 +1,35 @@
+{% extends "basic_header.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="inner-container">
+        <div class="row">
+            <div class="upper-message" style="background-color: {{ bcolor }}"><a href="{{ url }}">Display Message in Browser</a></div>
+            <div class="title-bar" style="background-color: {{ bcolor }}"><span>hello {{ municipality }}</span> Municipal Council Information Portal</div>
+            <div class="message-body">
+                <div class="upper-message-body">
+                    <label>Beste, {{ username }},</label>
+                    <p>
+                        Click on the link to activate your account.
+                    </p>
+                    {% if password %}
+                        <p>Je gebruikersnaam: {{ username }}</p>
+                        <p>Je wachtwoord: {{ password }}</p>
+                    {% endif %}
+                    <a class="activate-btn" href="{{ link }}" style="background: {{ bcolor }}">Activate Your Account</a>
+                </div>
+            </div>
+            <div class="footer" style="background-color: {{ bcolor }}">
+                <label>Council Information Portal Municipality {{ municipality }}</label>
+                <div>
+                    <label>RIS {{ municipality }}: </label> <a href="{{ portal_url }}">{{ portal_url }}</a>
+                    <!-- <label>Over RIS: </label> <a href="{{ portal_url }}">Het Raads informatie Portaal concept</a> <span>|</span>
+                    <label>Contact: </label> <a href="{{ portal_url }}">RIS Infodesk</a> <span>|</span>
+                    <a href="{{ portal_url }}">Hoe werkt RIS</a> <span>|</span> <a href="{{ portal_url }}">Uitschrijven van de RIS Gemeente X Zoekmachine</a> -->
+                </div>
+            </div>
+            <a style="display: none" href="https://icons8.com">Icon pack by Icons8</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
