@@ -99,7 +99,7 @@ DATABASES = {
             'options': '-c search_path=public'
         },
         'USER': 'postgres',
-        'PASSWORD': 'krishna',
+        'PASSWORD': 'mapNepal@2020',
         'HOST': 'localhost',
         'PORT': '5432',
     }
