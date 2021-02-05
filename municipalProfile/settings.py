@@ -31,6 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
 '127.0.0.1',
 'localhost',
+'208.64.33.97',
 'rangeli.kaflekrishna.com.np',
 'rangeli-api.kaflekrishna.com.np',
 # '*'
@@ -98,7 +99,7 @@ DATABASES = {
             'options': '-c search_path=public'
         },
         'USER': 'postgres',
-        'PASSWORD': 'mapnepal@2020',
+        'PASSWORD': 'krishna',
         'HOST': 'localhost',
         'PORT': '5432',
     }
