@@ -207,7 +207,27 @@ class dashboardDataList(APIView):
         stats['allowance'] = PersonalData.objects.filter(q120=1).count()
         gender = PersonalData.objects.all().values(category=F('q15')).annotate(value = Count('q15'))
         literacy = PersonalData.objects.all().values(category=F('q22')).annotate(value = Count('q22'))
-
+        age_sex_pyramid = PersonalData.objects.all().values(gender=F('q15'), agegp=F('age_group')).annotate(value = Count('age_group')).order_by('agegp')
+        # print(age_sex_pyramid)
+        ag_data={}
+        ag_data['male']={
+                'category':[],
+                'value':[]
+        }
+        ag_data['female']={
+                'category':[],
+                'value':[]
+        }
+        for ag in age_sex_pyramid:
+            if ag['gender']=='1':
+                ag_data['male']['category'].append(ag['agegp'])
+                ag_data['male']['value'].append(ag['value']*-1)
+            elif ag['gender']=='2':
+                ag_data['female']['category'].append(ag['agegp'])
+                ag_data['female']['value'].append(ag['value'])
+            else:
+                continue
+        stats['agePyramid'] = ag_data
         serializer = serializers.DataSerializer(gender, many=True)
         # lookup data query
         lookup = PersonalQuestions.objects.get(odk_question=personal_variables_column_match['q15']).choice_list

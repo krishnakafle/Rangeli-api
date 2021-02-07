@@ -22,6 +22,12 @@ class DataSerializer(serializers.Serializer):
     category = serializers.CharField(max_length=255)
     value = serializers.IntegerField()
 
+class agePyramidSerializer(serializers.Serializer):
+    agegp = serializers.CharField(max_length=255)
+    gender = serializers.CharField(max_length=255)
+    value = serializers.IntegerField()
+
+
 class personalDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonalData

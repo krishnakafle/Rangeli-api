@@ -102,6 +102,7 @@ DATABASES = {
         },
         'USER': 'postgres',
         'PASSWORD': 'mapnepal@2020',
+        # 'PASSWORD': 'krishna',
         'HOST': 'localhost',
         'PORT': '5432',
     }
