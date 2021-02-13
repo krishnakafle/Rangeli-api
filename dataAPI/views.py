@@ -3,6 +3,9 @@ from django.shortcuts import render
 
 from dataAPI import serializers
 from rest_framework import generics
+from django.http import HttpResponse
+from wsgiref.util import FileWrapper
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -25,6 +28,7 @@ personal_variables_column_match ={
 }
 for vm in personal_variables_match:
     personal_variables_column_match[vm.small]=vm.original
+
 # Create your views here.
 class householdQuestionsList(APIView):
     """
@@ -256,5 +260,19 @@ class dashboardDataList(APIView):
         }
         return Response(stats, status=status.HTTP_200_OK)
 
+class FileDownloadListAPIView(generics.ListAPIView):
 
+    def get(self, request, name, format=None):
+        if name=='Profile':
+            file_handle = 'media/report/Profile.pdf'
+            document = open(file_handle, 'rb')
+            response = HttpResponse(FileWrapper(document), content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="%s".pdf' % name
+            return response
+        else:
+            file_handle = 'media/excel/'+ name +'.xlsx'
+            document = open(file_handle, 'rb')
+            response = HttpResponse(FileWrapper(document), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            response['Content-Disposition'] = 'attachment; filename="%s".xlsx' % name
+            return response
 
